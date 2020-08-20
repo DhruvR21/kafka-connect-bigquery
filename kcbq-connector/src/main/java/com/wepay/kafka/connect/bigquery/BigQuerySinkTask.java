@@ -191,6 +191,7 @@ public class BigQuerySinkTask extends SinkTask {
     Map<PartitionedTableId, TableWriterBuilder> tableWriterBuilders = new HashMap<>();
 
     for (SinkRecord record : records) {
+      logger.info("[Connector] received: {}", record);
       if (record.value() != null) {
         PartitionedTableId table = getRecordTable(record);
         if (schemaRetriever != null) {
