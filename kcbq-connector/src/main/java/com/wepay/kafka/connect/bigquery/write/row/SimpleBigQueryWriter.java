@@ -63,6 +63,7 @@ public class SimpleBigQueryWriter extends BigQueryWriter {
   @Override
   public Map<Long, List<BigQueryError>> performWriteRequest(PartitionedTableId tableId,
                                                             SortedMap<SinkRecord, InsertAllRequest.RowToInsert> rows) {
+    logger.info("[Dhruv] Connector: writing the follwing rows: {}", rows);
     InsertAllRequest request = createInsertAllRequest(tableId, rows.values());
     InsertAllResponse writeResponse = bigQuery.insertAll(request);
     if (writeResponse.hasErrors()) {
